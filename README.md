@@ -1,7 +1,6 @@
 #  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 
-> JSON schema based validation for express routes
-
+JSON schema based validation for express routes. Validate req.body declaratively using [JSON schemas](http://json-schema.org/). Uses [tv4](https://github.com/geraintluff/tv4) to create body validation middelware.
 
 ## Install
 
@@ -9,20 +8,26 @@
 $ npm install --save body-schema
 ```
 
-
 ## Usage
 
 ```js
 var bodySchema = require('body-schema');
 
-bodySchema('Rainbow');
-```
+var loginSchema = {
+    'type': 'object',
+    'properties': {
+        'username': {
+            'type': 'string'
+        },
+        'password': {
+            'type': 'string'
+        }
+    },
+    'required': ['username', 'password']
+};
 
-```sh
-$ npm install --global body-schema
-$ body-schema --help
+app.post('/login', bodySchema(loginSchema), login);
 ```
-
 
 ## License
 

@@ -1,10 +1,51 @@
 'use strict';
-var assert = require('assert');
+
 var bodySchema = require('../');
+var chai = require('chai');
 
 describe('body-schema node module', function() {
-    it('must have at least one test', function() {
-        bodySchema();
-        assert(false, 'I was too lazy to write any tests. Shame on me.');
+    var schema = {
+        'title': 'Example Schema',
+        'type': 'object',
+        'properties': {
+            'firstName': {
+                'type': 'string'
+            },
+            'lastName': {
+                'type': 'string'
+            },
+            'age': {
+                'description': 'Age in years',
+                'type': 'integer',
+                'minimum': 0
+            }
+        },
+        'required': ['firstName', 'lastName']
+    };
+
+    it('accpet valid schema', function(done) {
+        var payload = {
+            body: {
+                'firstName': 'Andrew',
+                'lastName': 'Lavers'
+            }
+        };
+
+        var mw = bodySchema(schema);
+        mw(payload, null, done);
+    });
+
+    it('reject invalid schema', function(done) {
+        var payload = {
+            body: {
+                'firstName': 'Andrew'
+            }
+        };
+
+        var mw = bodySchema(schema);
+        mw(payload, null, function(err) {
+            chai.expect(err).to.exist;
+            done();
+        });
     });
 });

@@ -1,6 +1,6 @@
 {
   "name": "body-schema",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "JSON schema based validation middleware for express/connect",
   "author": {
     "name": "Andrew Lavers",
@@ -9,8 +9,7 @@
   "repository": "alavers/body-schema",
   "license": "MIT",
   "files": [
-    "index.js",
-    "cli.js"
+    "index.js"
   ],
   "keywords": [
     "body-schema",
