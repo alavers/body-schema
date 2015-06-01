@@ -35,8 +35,5 @@
   },
   "scripts": {
     "test": "grunt"
-  },
-  "bin": {
-    "body-schema": "cli.js"
   }
 }
