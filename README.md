@@ -33,6 +33,14 @@ app.post('/login', bodySchema(loginSchema), login);
 
 MIT © [Andrew Lavers]()
 
+## TODO:
+
+Shorthand syntax, eg:
+
+```js
+app.post('/login', bodySchema(['username', 'password'], login));
+```
+
 
 [npm-image]: https://badge.fury.io/js/body-schema.svg
 [npm-url]: https://npmjs.org/package/body-schema
